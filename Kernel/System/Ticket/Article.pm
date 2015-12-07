@@ -15,6 +15,8 @@ use POSIX qw(ceil);
 
 use Kernel::System::EmailParser;
 
+use Kernel::System::Ticket::Article::ExternalTicketNumberCompletion;
+
 use Kernel::System::VariableCheck qw(:all);
 
 our $ObjectManagerDisabled = 1;
@@ -2204,6 +2206,10 @@ sub ArticleSend {
     $Kernel::OM->Get('Kernel::System::HTMLUtils')->EmbeddedImagesExtract(
         DocumentRef    => \$Param{Body},
         AttachmentsRef => $Param{Attachment} || [],
+    );
+
+    $Param{Subject} = $Self->ExternalTicketNumberCompletion(
+        %Param,
     );
 
     # create article
