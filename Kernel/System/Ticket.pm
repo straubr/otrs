@@ -89,6 +89,7 @@ sub new {
 
     @ISA = qw(
         Kernel::System::Ticket::Article
+        Kernel::System::Ticket::Article::ExternalTicketNumberCompletion
         Kernel::System::Ticket::TicketACL
         Kernel::System::Ticket::TicketSearch
         Kernel::System::EventHandler
