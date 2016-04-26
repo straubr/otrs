@@ -176,7 +176,10 @@ sub Run {
     my $TicketObject = $Kernel::OM->Get('Kernel::System::Ticket');
 
     # search tickets
-    my @TicketIDs = $TicketObject->TicketSearch(%Query);
+    my @TicketIDs;
+    if ($Param{JobConfig}->{'AppendArticle'} == 1) {
+        @TicketIDs = $TicketObject->TicketSearch(%Query);
+    }
 
     # get the first and only ticket id
     my $TicketID = shift @TicketIDs;
