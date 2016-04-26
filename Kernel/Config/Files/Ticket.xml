@@ -10186,6 +10186,7 @@ Thanks for your help!
                 <Item Key="DynamicFieldName">Name_X</Item>
                 <Item Key="SenderType">system</Item>
                 <Item Key="ArticleType" Translatable="1">note-report</Item>
+                <Item Key="AppendArticle">1</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -10205,6 +10206,7 @@ Thanks for your help!
                 <Item Key="DynamicFieldName">Name_X</Item>
                 <Item Key="SenderType">system</Item>
                 <Item Key="ArticleType" Translatable="1">note-report</Item>
+                <Item Key="AppendArticle">1</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -10224,6 +10226,7 @@ Thanks for your help!
                 <Item Key="DynamicFieldName">Name_X</Item>
                 <Item Key="SenderType">system</Item>
                 <Item Key="ArticleType" Translatable="1">note-report</Item>
+                <Item Key="AppendArticle">1</Item>
             </Hash>
         </Setting>
     </ConfigItem>
@@ -10243,6 +10246,7 @@ Thanks for your help!
                 <Item Key="DynamicFieldName">Name_X</Item>
                 <Item Key="SenderType">system</Item>
                 <Item Key="ArticleType" Translatable="1">note-report</Item>
+                <Item Key="AppendArticle">1</Item>
             </Hash>
         </Setting>
     </ConfigItem>
