@@ -485,7 +485,7 @@ sub SetEnv {
 
 =head2 Block()
 
-use a dtl block
+use a tt block
 
     $LayoutObject->Block(
         Name => 'Row',
