@@ -977,12 +977,14 @@ sub CustomerUserUpdate {
     my ( $Self, %Param ) = @_;
 
     # check needed stuff
-    if ( !$Param{UserLogin} ) {
-        $Kernel::OM->Get('Kernel::System::Log')->Log(
-            Priority => 'error',
-            Message  => "Need UserLogin!"
-        );
-        return;
+    for (qw(UserLogin UserLogin)) {
+        if ( !$Param{$_} ) {
+            $Kernel::OM->Get('Kernel::System::Log')->Log(
+                Priority => 'error',
+                Message  => "Need $_!"
+            );
+            return;
+        }
     }
 
     # check for UserLogin-renaming and if new UserLogin already exists...
