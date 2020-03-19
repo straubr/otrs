@@ -62,6 +62,7 @@ sub new {
         || die "Need CustomerUser->CustomerKey in Kernel/Config.pm!";
     $Self->{CustomerID} = $Self->{CustomerUserMap}->{CustomerID}
         || die "Need CustomerUser->CustomerID in Kernel/Config.pm!";
+    $Self->{CustomerIDs} = $Self->{CustomerUserMap}->{CustomerIDs} || 0;
     $Self->{ReadOnly}                 = $Self->{CustomerUserMap}->{ReadOnly};
     $Self->{ExcludePrimaryCustomerID} = $Self->{CustomerUserMap}->{CustomerUserExcludePrimaryCustomerID} || 0;
     $Self->{SearchPrefix}             = $Self->{CustomerUserMap}->{CustomerUserSearchPrefix};
@@ -410,11 +411,23 @@ sub CustomerSearch {
 
         push @Bind, \$Param{CustomerIDRaw};
 
-        if ( $Self->{CaseSensitive} ) {
-            $SQL .= "$Self->{CustomerID} = ? ";
+        if ( $Self->{CustomerIDs} ) {
+            push @Bind, \$Param{CustomerIDRaw};
+
+            if ( $Self->{CaseSensitive} ) {
+                $SQL .= "( $Self->{CustomerID} = ? OR FIND_IN_SET (?,REPLACE($Self->{CustomerIDs},';',',')))";
+            }
+            else {
+                $SQL .= "( LOWER($Self->{CustomerID}) = LOWER(?) OR FIND_IN_SET ( LOWER(?) ,LOWER(REPLACE($Self->{CustomerIDs},';',','))))";
+            }
         }
         else {
-            $SQL .= "LOWER($Self->{CustomerID}) = LOWER(?) ";
+            if ( $Self->{CaseSensitive} ) {
+                $SQL .= "$Self->{CustomerID} = ? ";
+            }
+            else {
+                $SQL .= "LOWER($Self->{CustomerID}) = LOWER(?) ";
+            }
         }
     }
 
